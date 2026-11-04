@@ -25,3 +25,16 @@ add_student("Emma", "Database")
 
 view_students()
 print("\nTotal Students:", count_students())
+def search_student(search_name):
+    try:
+        with open(FILE_PATH, "r", encoding="utf-8") as file:
+            for line in file:
+                name, course = line.strip().split(",", 1)
+                if name.lower() == search_name.lower():
+                    print(f"Found: {name} - {course}")
+                    return
+        print("Student not found.")
+    except FileNotFoundError:
+        print("Student records file does not exist.")
+# Add after the existing sample calls:
+search_student("Emma")  
